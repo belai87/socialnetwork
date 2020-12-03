@@ -1,0 +1,4 @@
+.dialog_item{}
+.dialog_item.active{
+    font-weight: 600;
+}

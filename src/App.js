@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import Menu from './components/Menu/Menu';
+import Header from './components/Header/Header';
+import Dialogs from "./components/Dialogs/Dialogs";
+import Profile from './components/Profile/Profile'
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import News from "./components/News/News";
+import Music from "./components/Music/Music";
+import Setting from "./components/Setting/Setting";
+import state from "./redux/state";
 
-function App() {
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <div>
+          <Header />
+          <main>
+            <div className="container">
+              <div className="row">
+                  <Menu />
+                  <Route path="/profile"><Profile posts={state.profile.posts} info={state.profile.info}/></Route>
+                  <Route path="/dialogs"><Dialogs dialogs={state.chat.dialogs} message={state.chat.messages}/></Route>
+                  <Route path="/news"><News news={state.news}/></Route>
+                  <Route path="/music"><Music /></Route>
+                  <Route path="/setting"><Setting /></Route>
+              </div>
+            </div>
+          </main>
+        </div>
+      </Router>
   );
 }
 
