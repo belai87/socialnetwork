@@ -1,27 +1,13 @@
 import React from 'react';
-import {Link, NavLink} from "react-router-dom";
-import style from "./index.module.css"
+import MenuItem from "./MenuItem/MenuItem";
 
 const Menu = (props) => {
+    let menu = props.menu.items.map(el => <MenuItem to={el.to} key={el.id} id={el.id} name={el.name} active={el.active}/>)
     return (
         <div className="col-2">
             <nav>
                 <ul className="nav flex-column">
-                    <li className="nav-item">
-                        <NavLink className="nav-link" exact activeClassName={style.active} to="/profile">Profile</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" exact activeClassName={style.active} to="/dialogs">Message</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" exact activeClassName={style.active} to="/news">News</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" exact activeClassName={style.active} to="/music">Music</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" exact activeClassName={style.active} to="/setting">Setting</NavLink>
-                    </li>
+                    {menu}
                 </ul>
             </nav>
         </div>

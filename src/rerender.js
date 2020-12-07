@@ -1,9 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import state, {subscribe} from './redux/state'
-import ReactDOM from "react-dom";
-import App from "./App";
 import React from 'react';
-
+import ReactDOM from 'react-dom';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const rerenderEntireTree = (state) =>{
     ReactDOM.render(
@@ -13,8 +11,5 @@ const rerenderEntireTree = (state) =>{
         document.getElementById('root')
     );
 }
-
-rerenderEntireTree(state);
-subscribe(rerenderEntireTree);
-
+export default rerenderEntireTree;
 
