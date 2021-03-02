@@ -1,27 +1,49 @@
-import Menu from './components/Menu/Menu';
-import Header from './components/Header/Header';
-import Dialogs from "./components/Dialogs/Dialogs";
-import Profile from './components/Profile/Profile'
+
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Setting from "./components/Setting/Setting";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import MenuContainer from "./components/Menu/MenuContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderComntainer";
+import LoginPage from "./components/Login/Login";
 
 
 const App = (props) => {
   return (
       <Router>
         <div>
-          <Header />
+          <HeaderContainer />
           <main>
             <div className="container">
               <div className="row">
-                  <Menu menu={props.state.menu}/>
-                  <Route path="/profile"><Profile state={props.state.profile}/></Route>
-                  <Route path="/dialogs"><Dialogs dialogs={props.state.chat.dialogs} message={props.state.chat.messages}/></Route>
-                  <Route path="/news"><News news={props.state.news}/></Route>
+                  <MenuContainer/>
+
+                  <Route path="/profile/:userId?">
+                      <ProfileContainer
+                          state={props.state.profile}
+                          dispatch={props.dispatch}/>
+                  </Route>
+
+                  <Route path="/dialogs">
+                      <DialogsContainer
+                          state={props.state.chat}
+                          dispatch={props.dispatch}/>
+                  </Route>
+
+                  <Route path="/users">
+                      <UsersContainer state={props.state.users}/>
+                  </Route>
+
+                  <Route path="/news">
+                      <News news={props.state.news}/>
+                  </Route>
                   <Route path="/music"><Music /></Route>
                   <Route path="/setting"><Setting /></Route>
+
+                  <Route path="/login"><LoginPage login={props.state.auth}/></Route>
               </div>
             </div>
           </main>

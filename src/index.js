@@ -1,20 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import state, {subscribe} from './redux/state'
+import store from './redux/redux'
 import ReactDOM from "react-dom";
 import App from "./App";
 import React from 'react';
+import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
 
-const rerenderEntireTree = (state) =>{
-    ReactDOM.render(
-        <React.StrictMode>
-            <App state={state}/>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+);
 
-rerenderEntireTree(state);
-subscribe(rerenderEntireTree);
+
 
 

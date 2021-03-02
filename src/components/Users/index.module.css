@@ -1,0 +1,9 @@
+.pagenation{}
+.pagenation_item{
+    margin:0 1rem 0;
+}
+.pagenation_item__active{
+    font-weight: bold;
+    margin:0 .5rem 0 0;
+    color:red;
+}

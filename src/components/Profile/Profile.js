@@ -1,12 +1,13 @@
 import React from 'react';
-import Posts from "../Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import PostsContainer from "../Posts/PostsContainer";
 
 const Profile = (props) => {
+
     return (
         <div className="col">
-            <ProfileInfo info={props.state.info}/>
-            <Posts state={props.state}/>
+            <ProfileInfo info={props.state.info} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <PostsContainer state={props.state} dispatch={props.dispatch}/>
         </div>
     );
 }
